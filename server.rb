@@ -1,5 +1,6 @@
 require 'pry'
 require 'sinatra'
+require 'sinatra/reloader'
 require 'csv'
 
 ## get movie data ##
@@ -19,14 +20,23 @@ def sort_data(movie_array)
 end
 
 sorted_data = sort_data(csv_import('movies.csv'))
-binding.pry
+
 
 ## set routes ##
 
 get '/' do
-  @movie_data = csv_import('movies.csv')
-
+  @movie_data = sorted_data
   erb :movies
 end
 
+get '/movies' do
+  @movie_data = sorted_data
+  erb :movies
+end
+
+get '/movie/:id' do
+  @movie_data = sorted_data
+  @movie_title = sorted_data.select { |movie| movie[:id] == params[:id]}
+  erb :title_page
+end
 

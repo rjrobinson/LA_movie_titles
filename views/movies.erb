@@ -1,7 +1,16 @@
-<ul>
-<%@movie_data.each do |movie|%>
-  <li><%= movie[:title]%></li>
-<%end%>
-</ul>
-
-
+<table id="table">
+  <tr>
+    <th>Movie Title</th>
+    <th>Release Year</th>
+    <th>Rating</th>
+    <th>Genre</th>
+  </tr>
+  <tr>
+    <%@movie_data.each do |movie|%>
+    <td><a href="/movie/<%=movie[:id]%>"><%=movie[:title]%></a></td>
+    <td><%=movie[:year]%></td>
+    <td><%=movie[:rating]%></td>
+    <td><%=movie[:genre]%></td>
+  </tr>
+  <%end%>
+</table>
