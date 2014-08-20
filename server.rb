@@ -12,6 +12,14 @@ def csv_import(filename)
   results
 end
 
+def sort_data(movie_array)
+  movie_array.sort_by do |movie|
+    movie[:title]
+  end
+end
+
+sorted_data = sort_data(csv_import('movies.csv'))
+binding.pry
 
 ## set routes ##
 
